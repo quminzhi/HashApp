@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <link rel="icon" href="{% static 'logo/icon_512x512@2x.png' %}" sizes="32x32" type="image/png" />
+    <link rel="icon" href="{% static 'logo/icon_512x512@2x.png' %}" sizes="16x16" type="image/png" />
+
+    <title>Web App</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'app/css/apphome.css' %}" />
+    <link rel="stylesheet" href="{% static 'app/css/kontext.css' %}" />
+</head>
+
+<body>
+    <article class="kontext">
+        <div class="layer one show greet">
+            <h2>Welcome to App Store</h2>
+            <p>CREATIVE changes world, IDEAs worth spreading</p>
+        </div>
+
+        {% if apps_two %}
+        <div class="layer two">
+            <div role="AppShop" class="container mt-4">
+                <div class="row">
+                    {% for app in apps_two %}
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div
+                                class="row h-md-250 no-gutters overflow-hidden flex-md-row shadow-sm position-relative">
+                                <div class="col d-flex flex-column position-static">
+                                    <div class="card-body">
+                                        <h5><strong class="d-inline-block mb-1 text-{{ app.color }}">{{ app.kind }}</strong></h5>
+                                        <h5 class="card-title mb-0">{{ app.name }}</h5>
+                                        <div class="mb-2 text-muted" style="margin-top: 0.2rem;">{{ app.created | timesince }}</div>
+                                        <p class="card-text mb-3">
+                                            {{ app.intro | slice:'60' }}
+                                        </p>
+                                        {% if app.link %}
+                                        <a href="{% url app.link %}" target="_blank">Go to app</a>
+                                        {% else %}
+                                        <a href="" target="_blank">Go to app</a>
+                                        {% endif %}
+                                        {% if app.github %}
+                                        <a href="{{ app.github }}" target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                        {% if app.hasDoc %}
+                                        <a href="{% url 'notepage' 'development-document' app.docname %}"
+                                            target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-4 d-none d-lg-block">
+                                    <img src="{% static app.imageURL %}" class="card-img" alt="img" height="230" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if apps_three %}
+        <div class="layer three">
+            <div role="AppShop" class="container mt-4">
+                <div class="row">
+                    {% for app in apps_three %}
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div
+                                class="row h-md-250 no-gutters overflow-hidden flex-md-row shadow-sm position-relative">
+                                <div class="col d-flex flex-column position-static">
+                                    <div class="card-body">
+                                        <h5><strong class="d-inline-block mb-1 text-{{ app.color }}">{{ app.kind }}</strong></h5>
+                                        <h5 class="card-title mb-0">{{ app.name }}</h5>
+                                        <div class="mb-2 text-muted" style="margin-top: 0.2rem;">{{ app.created | timesince }}</div>
+                                        <p class="card-text mb-3">
+                                            {{ app.intro | slice:'60' }}
+                                        </p>
+                                        {% if app.link %}
+                                        <a href="{% url app.link %}" target="_blank">Go to app</a>
+                                        {% else %}
+                                        <a href="" target="_blank">Go to app</a>
+                                        {% endif %}
+                                        {% if app.github %}
+                                        <a href="{{ app.github }}" target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                        {% if app.hasDoc %}
+                                        <a href="{% url 'notepage' 'development-document' app.docname %}"
+                                            target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-4 d-none d-lg-block">
+                                    <img src="{% static app.imageURL %}" class="card-img" alt="img" height="230" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if apps_four %}
+        <div class="layer four">
+            <div role="AppShop" class="container mt-4">
+                <div class="row">
+                    {% for app in apps_four %}
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div
+                                class="row h-md-250 no-gutters overflow-hidden flex-md-row shadow-sm position-relative">
+                                <div class="col d-flex flex-column position-static">
+                                    <div class="card-body">
+                                        <h5><strong class="d-inline-block mb-1 text-{{ app.color }}">{{ app.kind }}</strong></h5>
+                                        <h5 class="card-title mb-0">{{ app.name }}</h5>
+                                        <div class="mb-2 text-muted" style="margin-top: 0.2rem;">{{ app.created | timesince }}</div>
+                                        <p class="card-text mb-3">
+                                            {{ app.intro | slice:'60' }}
+                                        </p>
+                                        {% if app.link %}
+                                        <a href="{% url app.link %}" target="_blank">Go to app</a>
+                                        {% else %}
+                                        <a href="" target="_blank">Go to app</a>
+                                        {% endif %}
+                                        {% if app.github %}
+                                        <a href="{{ app.github }}" target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                        {% if app.hasDoc %}
+                                        <a href="{% url 'notepage' 'development-document' app.docname %}"
+                                            target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-4 d-none d-lg-block">
+                                    <img src="{% static app.imageURL %}" class="card-img" alt="img" height="230" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if apps_five %}
+        <div class="layer five">
+            <div role="AppShop" class="container mt-4">
+                <div class="row">
+                    {% for app in apps_five %}
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div
+                                class="row h-md-250 no-gutters overflow-hidden flex-md-row shadow-sm position-relative">
+                                <div class="col d-flex flex-column position-static">
+                                    <div class="card-body">
+                                        <h5><strong class="d-inline-block mb-1 text-{{ app.color }}">{{ app.kind }}</strong></h5>
+                                        <h5 class="card-title mb-0">{{ app.name }}</h5>
+                                        <div class="mb-2 text-muted" style="margin-top: 0.2rem;">{{ app.created | timesince }}</div>
+                                        <p class="card-text mb-3">
+                                            {{ app.intro | slice:'60' }}
+                                        </p>
+                                        {% if app.link %}
+                                        <a href="{% url app.link %}" target="_blank">Go to app</a>
+                                        {% else %}
+                                        <a href="" target="_blank">Go to app</a>
+                                        {% endif %}
+                                        {% if app.github %}
+                                        <a href="{{ app.github }}" target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                        {% if app.hasDoc %}
+                                        <a href="{% url 'notepage' 'development-document' app.docname %}"
+                                            target="_blank" style="margin-left: 0.3cm;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                fill="currentColor" class="bi bi-book-half" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-4 d-none d-lg-block">
+                                    <img src="{% static app.imageURL %}" class="card-img" alt="img" height="230" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="layer end greet">
+            <h2>Developing ...</h2>
+        </div>
+    </article>
+
+    <ul class="bullets"></ul>
+
+    <script src="{% static 'app/js/kontext.js' %}"></script>
+    <script src="{% static 'app/js/kontext-util.js' %}"></script>
+    <script src="{% static 'app/js/kontext-widgets.js' %}"></script>
+
+    <script>
+        !(function (d, s, id) {
+            var js,
+                fjs = d.getElementsByTagName(s)[0];
+            if (!d.getElementById(id)) {
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "{% static 'app/js/kontext-widgets.js' %}";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        })(document, "script", "twitter-wjs");
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

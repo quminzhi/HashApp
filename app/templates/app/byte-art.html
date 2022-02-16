@@ -1,0 +1,121 @@
+{% extends 'base-without-components.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'app/css/byte-art/byte-art.css' %}">
+<link rel="stylesheet" href="{% static 'app/css/byte-art/placeholder.css' %}">
+{% endblock %}
+
+{% block title %}
+Byte Art
+{% endblock %}
+
+{% block body %}
+<div id="hero">
+    <div class="carousel-item active background-walk-y" style="background-image: url('{{ background_url }}');">
+        <div id="byte-art" class="container mt-2">
+            <div class="row justify-content-center">
+                <div class="app__bg col-md-10 my-3 p-3 rounded shadow-sm">
+                    <div class="row justify-content-center mt-5">
+                        <h1>Byte Art</h1>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <h2>Image Style Transform System</h2>
+                    </div>
+                    <div class="row justify-content-center mt-5">
+                        <div class="col-md-11">
+                            <form id="art-form" class="needs-validation" action="{% url 'byte-art' %}" method="POST"
+                                enctype="multipart/form-data" novalidate>
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-label-group col-md-5">
+                                        <input type="text" id="nickname" name="nickname" class="form-control"
+                                            placeholder="Email" value="{{ nickname }}" autofocus required>
+                                        <label for="nickname">Nickname</label>
+                                        <div class="invalid-feedback">
+                                            Hi body, what's your nickname?
+                                        </div>
+                                    </div>
+                                    <div class="form-label-group col-md-7">
+                                        <input type="text" id="email" name="email" class="form-control"
+                                            placeholder="Email" value="{{ email }}">
+                                        <label for="email">Email</label>
+                                        <div class="invalid-feedback">
+                                            Please input an email address if you want acquire image in your mail.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="origin_image" class="form-label">Original Image:</label>
+                                    <input class="form-control" type="file" id="origin_image" name="origin_image"
+                                        required onchange="readOriginURL(this);">
+                                    <div class="invalid-feedback">
+                                        Please upload an image.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="style_image" class="form-label">Style Image:</label>
+                                    <input class="form-control" type="file" id="style_image" name="style_image" required
+                                        onchange="readStyleURL(this);">
+                                    <div class="invalid-feedback">
+                                        Please upload an image.
+                                    </div>
+                                </div>
+
+                                <!-- show panel -->
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                        <figure>
+                                            <img class="img-thumbnail rounded mx-auto d-block" id="origin"
+                                            src="{{ origin_url }}" alt="origin image">
+                                            <figcaption class="cap-center mt-2">Fig.1 Origin Image</figcaption>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <figure>
+                                            <img class="img-thumbnail rounded mx-auto d-block" id="style"
+                                            src="{{ style_url }}" alt="style image">
+                                            <figcaption class="cap-center mt-2">Fig.2 Style Image</figcaption>
+                                        </figure>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <figure>
+                                        <img class="img-thumbnail rounded mx-auto d-block" src="{{ stylized_url }}"
+                                            alt="stylized image">
+                                            <figcaption class="cap-center mt-2">Fig.3 Stylized Image</figcaption>
+                                        </figure>
+                                    </div>
+                                </div>
+
+                                <!-- Button group-->
+                                <div class="btn-group-md float-right mt-5 m-md-3" role="group" aria-label="btn-group">
+                                    {% if allow_download %}
+                                    <a href="{{ stylized_url }}" target="_blank" style="margin-right: 8px;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                            fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                            <path
+                                                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                            <path
+                                                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                        </svg>
+                                    </a>
+                                    {% endif %}
+                                    <button id="submit-btn" type="submit" class="btn btn-lg btn-secondary">
+                                        Upload
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'app/js/byte-art/byte-art.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+.app__bg {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  height: 99vh;
+}
+
+.app__bg::after {
+  z-index: -1;
+  opacity: 0.2;
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: url(../../images/pattern.jpg);
+}

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta content="author" name="Minzhi Qu">
+    <meta content="mail" name="quminzhi@gmail.com">
+
+    <link rel="icon" href="{% static 'logo/icon_512x512@2x.png' %}" sizes="32x32" type="image/png" />
+    <link rel="icon" href="{% static 'logo/icon_512x512@2x.png' %}" sizes="16x16" type="image/png" />
+
+    <!-- Favicons -->
+    <link href="{% static 'logo/icon_512x512@2x.png' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'src/vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/line-awesome/css/line-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/venobox/venobox.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'src/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'src/icofont/icofont.min.css' %}" rel="stylesheet" >
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+
+    {% block style %}
+
+    {% endblock %}
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<!-- <body oncontextmenu="return false"> -->
+
+<body>
+
+    {% block body %}
+
+    {% endblock %}
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'src/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'src/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'src/vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'src/vendor/php-email-form/validate.js' %}"></script>
+    <script src="{% static 'src/vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+    <script src="{% static 'src/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'src/vendor/venobox/venobox.min.js' %}"></script>
+    <script src="{% static 'src/vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'src/vendor/TweenMax/TweenMax.min.js' %}"></script>
+    <script src="{% static 'src/vendor/aos/aos.js' %}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/form-checker.js' %}"></script>
+
+    {% block js %}
+
+    {% endblock %}
+</body>
+
+</html>
